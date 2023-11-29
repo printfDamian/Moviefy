@@ -1,4 +1,4 @@
-USE myshows
+USE myshows;
 
 ALTER TABLE watchlist 
 ADD CONSTRAINT watchlist FOREIGN KEY (`user_id`)
