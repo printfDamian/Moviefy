@@ -37,30 +37,32 @@ fetch(genreApiURL)
     })
     .catch(error => console.error('Error fetching genre data:', error));
 
-    function showGenres() {
-        const genreContainer = document.getElementById('genre-container');
+function showGenres() {
+    const genreContainer = document.getElementById('genre-container');
     
-        // Create genre buttons
-        for (const genreId in genresMap) {
-            const genreButton = document.createElement('button');
-            genreButton.classList.add('btn', 'btn-outline-success', 'mr-2', 'mb-2'); // Added 'mb-2' for bottom margin
-            genreButton.textContent = genresMap[genreId];
+    // Create genre buttons
+    for (const genreId in genresMap) {
+        const genreButton = document.createElement('button');
+        genreButton.classList.add('btn', 'btn-outline-success', 'mr-2', 'mb-2'); // Added 'mb-2' for bottom margin
+        genreButton.textContent = genresMap[genreId];
             
-            // Add click event listener to filter by genre
-            genreButton.addEventListener('click', function () {
-                showMediaByGenre(genreId);
-            });
+        // Add click event listener to filter by genre
+        genreButton.addEventListener('click', function () {
+            showMediaByGenre(genreId);
+        });
     
-            genreContainer.appendChild(genreButton);
-        }
+        genreContainer.appendChild(genreButton);
     }
-    function showMediaByGenre(genreId) {
-        // Construct URL with genre filter
-        const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=ae89d8d4072d60d2c5397ecd99f986cb&with_genres=${genreId}&page=1`;
+}
+
+function showMediaByGenre(genreId) {
+    // Construct URL with genre filter
+    const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=ae89d8d4072d60d2c5397ecd99f986cb&with_genres=${genreId}&page=1`;
     
-        // Show movies based on the selected genre in the search container
-        showMedia(genreUrl, searchContainer);
-    }
+    // Show movies based on the selected genre in the search container
+    showMedia(genreUrl, searchContainer);
+}
+
 function showMedia(url, container) {
     fetch(url)
         .then(response => {
@@ -121,12 +123,19 @@ function createMediaCard(media) {
     detailsButton.classList.add('btn', 'btn-outline-primary');
     detailsButton.textContent = 'Details';
 
-    
-
     // Add event listener to the details button
     detailsButton.addEventListener('click', function () {
         // Call function to show movie details modal
         showMovieDetailsModal(media);
+    });
+
+    const addToFavoritesButton = document.createElement('button');
+    addToFavoritesButton.classList.add('btn', 'btn-outline-success', 'mr-2');
+    addToFavoritesButton.textContent = 'Add to Favorites';
+
+    // Add event listener to the "Add to Favorites" button
+    addToFavoritesButton.addEventListener('click', function () {
+        addToFavorites(media.id); // Pass the movie ID to the addToFavorites function
     });
 
     cardBody.appendChild(title);
@@ -134,6 +143,7 @@ function createMediaCard(media) {
     cardBody.appendChild(releaseYear);
     cardBody.appendChild(genres);
     cardBody.appendChild(detailsButton);
+    cardBody.appendChild(addToFavoritesButton);
 
     card.appendChild(image);
     card.appendChild(cardBody);
@@ -210,3 +220,20 @@ resetButton.addEventListener('click', function () {
 
 // Initial load of trending movies and TV shows
 
+function addToFavorites(movieId) {
+    
+    const addToFavoritesURL = `PHP/addFavorite?movieId=${movieId}`;
+
+    fetch(addToFavoritesURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Movie added to favorites:', data);
+            // You can provide feedback to the user here if needed
+        })
+        .catch(error => console.error('Error adding movie to favorites:', error));
+}
