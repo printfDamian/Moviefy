@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $row['id'];
 
         $_SESSION['user_id'] = $user_id;
-        header("Location: ../homePage.html");
+        header("Location: ../homePage.php");
         exit();
     } else {
         $_SESSION['login_failed'] = true;

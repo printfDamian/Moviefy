@@ -1,6 +1,6 @@
 use myshows;
 
-INSERT INTO status(status_name)
+INSERT INTO watch_status(status_name)
     VALUES
     ('to watch'),
     ('watch');
