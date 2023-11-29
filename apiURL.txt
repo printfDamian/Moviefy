@@ -1,0 +1,2 @@
+const tvApiURL = 'https://api.themoviedb.org/3/trending/tv/day?api_key=ae89d8d4072d60d2c5397ecd99f986cb&page=1';
+const movieApiURL = 'https://api.themoviedb.org/3/search/multi?api_key=ae89d8d4072d60d2c5397ecd99f986cb&page=1&query=';

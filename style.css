@@ -1,0 +1,39 @@
+ /* Add the following styles or update existing styles */
+        
+ .card-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px; /* Add padding for better visual appearance */
+}
+
+.card {
+    width: 15rem;
+    height: auto;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevent flex items from shrinking */
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+#reset_button{
+    margin-left: 0.5rem;
+}
