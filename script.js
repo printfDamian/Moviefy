@@ -54,7 +54,6 @@ fetch(genreApiURL)
             genreContainer.appendChild(genreButton);
         }
     }
-
     function showMediaByGenre(genreId) {
         // Construct URL with genre filter
         const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=ae89d8d4072d60d2c5397ecd99f986cb&with_genres=${genreId}&page=1`;
@@ -62,8 +61,6 @@ fetch(genreApiURL)
         // Show movies based on the selected genre in the search container
         showMedia(genreUrl, searchContainer);
     }
-    
-
 function showMedia(url, container) {
     fetch(url)
         .then(response => {
