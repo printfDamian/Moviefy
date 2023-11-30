@@ -130,7 +130,7 @@ function createMediaCard(media) {
     });
 
     const addToFavoritesButton = document.createElement('button');
-    addToFavoritesButton.classList.add('btn', 'btn-outline-success', 'mr-2');
+    addToFavoritesButton.classList.add('btn', 'btn-outline-warning', 'mr-2');
     addToFavoritesButton.textContent = '⭐';
 
     // Add event listener to the "Add to Favorites" button
@@ -181,17 +181,24 @@ function showMovieDetailsModal(media) {
     modalTitle.textContent = media.title || media.name;
 
     const modalBody = modal.querySelector('.modal-body');
-    modalBody.innerHTML = `
-        <img src="${IMGPATH + (media.poster_path || media.backdrop_path)}" alt="${media.title || media.name}" class="img-fluid">
-        <p>Rating: ${media.vote_average}</p>
-        <p>Released Year: ${getReleaseYear(media)}</p>
-        <p>Genres: ${getGenres(media)}</p>
-        <p>Overview: ${media.overview || 'N/A'}</p>
-        <!-- Add more details as needed -->
-    `;
+modalBody.innerHTML = `
+    <div class="row">
+        <div class="col-md-6">
+            <img src="${IMGPATH + (media.poster_path || media.backdrop_path)}" alt="${media.title || media.name}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <p>Rating: ${Number(media.vote_average).toFixed(1)}</p>
+            <p>Released Year: ${getReleaseYear(media)}</p>
+            <p>Genres: ${getGenres(media)}</p>
+            <p>Overview: ${media.overview || 'N/A'}</p>
+            <!-- Add more details as needed -->
+        </div>
+    </div>
+`;
 
-    // Show the modal
-    $(modal).modal('show');
+// Show the modal
+$(modal).modal('show');
+
 }
 
 // Search form event listener
@@ -221,11 +228,13 @@ resetButton.addEventListener('click', function () {
 // Initial load of trending movies and TV shows
 
 function addToFavorites(movieId) {
-    
     // Construct the absolute URL for the PHP script
-    const addToFavoritesURL = `PHP/addFavorite.php?movieId=${movieId}`;
+    const addToFavoritesURL = `/myshows/PHP/addFavorite.php?movieId=${movieId}`;
 
-    fetch(addToFavoritesURL)
+    fetch(addToFavoritesURL, {
+        method: 'GET', // or 'POST' if your server expects POST requests
+        credentials: 'same-origin', // include cookies if any
+    })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -238,6 +247,7 @@ function addToFavorites(movieId) {
         })
         .catch(error => console.error('Error adding movie to favorites:', error));
 }
+
 
 
 

@@ -17,12 +17,11 @@ if(!isset($_SESSION["user_id"])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="img/" />
-
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark justify-content-between fixed-top">
-        <a class="navbar-brand" href="#">Moviefy</a>
+        <a class="navbar-brand" href="#">Moviefy</a>    
         <form class="form-inline" id="search-form">
             
             <input class="form-control mr-sm-2" type="search" id="search" placeholder="Search" aria-label="Search">
@@ -33,9 +32,16 @@ if(!isset($_SESSION["user_id"])){
                       </svg>
                 </button>
                 
-            
         </form>
+        <button type="button" class="btn btn-outline-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"></path>
+                    <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"></path>
+                </svg>
+                Lists
+        </button>
         <a class="btn btn-outline-danger" href="index.php">Logout</a>
+        
     </nav>
     
     <div class="container mt-5">
@@ -65,8 +71,6 @@ if(!isset($_SESSION["user_id"])){
         <div class="card-container" id="top-shows">
             <!-- TV show cards will be dynamically added here -->
         </div>
-
-        
     </div>
     <!-- Modal -->
 <div class="modal fade" id="movieDetailsModal" tabindex="-1" role="dialog" aria-labelledby="movieDetailsModalLabel" aria-hidden="true">

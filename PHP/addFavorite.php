@@ -16,8 +16,10 @@
         // Execute the query
         if ($conn->query($insertQuery) === TRUE) {
             echo json_encode(['success' => true]);
+            $_SESSION["favInfo"] = true;
         } else {
             echo json_encode(['error' => $conn->error]);
+            $_SESSION["favInfo"] = false;
         }
 
         // Close the database connection
