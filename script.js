@@ -131,7 +131,7 @@ function createMediaCard(media) {
 
     const addToFavoritesButton = document.createElement('button');
     addToFavoritesButton.classList.add('btn', 'btn-outline-success', 'mr-2');
-    addToFavoritesButton.textContent = 'Add to Favorites';
+    addToFavoritesButton.textContent = '⭐';
 
     // Add event listener to the "Add to Favorites" button
     addToFavoritesButton.addEventListener('click', function () {
@@ -222,7 +222,8 @@ resetButton.addEventListener('click', function () {
 
 function addToFavorites(movieId) {
     
-    const addToFavoritesURL = `localhost/myshows/PHP/addFavorite?movieId=${movieId}`;
+    // Construct the absolute URL for the PHP script
+    const addToFavoritesURL = `PHP/addFavorite.php?movieId=${movieId}`;
 
     fetch(addToFavoritesURL)
         .then(response => {
@@ -237,3 +238,10 @@ function addToFavorites(movieId) {
         })
         .catch(error => console.error('Error adding movie to favorites:', error));
 }
+
+
+
+
+
+
+
