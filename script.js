@@ -222,7 +222,7 @@ resetButton.addEventListener('click', function () {
 
 function addToFavorites(movieId) {
     
-    const addToFavoritesURL = `PHP/addFavorite?movieId=${movieId}`;
+    const addToFavoritesURL = `localhost/myshows/PHP/addFavorite?movieId=${movieId}`;
 
     fetch(addToFavoritesURL)
         .then(response => {
