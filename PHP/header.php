@@ -1,14 +1,3 @@
-<?php 
-session_start();
-
-if(!isset($_SESSION["user_id"])){
-    header("Location: index.php");
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +9,7 @@ if(!isset($_SESSION["user_id"])){
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark justify-content-between fixed-top">
+<nav class="navbar navbar-dark bg-dark justify-content-between fixed-top">
         <a class="navbar-brand" href="homePage.php">Moviefy</a>    
         <form class="form-inline" id="search-form">
             
@@ -50,65 +39,3 @@ if(!isset($_SESSION["user_id"])){
         <a class="btn btn-outline-danger" href="index.php">Logout</a>
         
     </nav>
-    
-    <div class="container mt-5">
-        <h2 class="text-center">Genres</h2>
-        <div class="text-center mt-3" id="genre-container">
-            <!-- Genre buttons will be dynamically added here -->
-        </div>
-        <div class="card-container" id="search-container">
-            <!-- Search result cards will be dynamically added here -->
-        </div>
-        <h2 class="text-center">Trending Movies Today</h2>
-        <div class="card-container" id="movie-container">
-            <!-- Movie cards will be dynamically added here -->
-            
-        </div>
-        <h2 class="text-center">Top Rated Movies</h2>
-        <div class="card-container" id="top-movies">
-            <!-- TV show cards will be dynamically added here -->
-        </div>
-
-        <h2 class="text-center">Trending TV Shows Today</h2>
-        <div class="card-container" id="tv-container">
-            <!-- TV show cards will be dynamically added here -->
-        </div>
-        
-        <h2 class="text-center">Top Rated Shows</h2>
-        <div class="card-container" id="top-shows">
-            <!-- TV show cards will be dynamically added here -->
-        </div>
-    </div>
-    <!-- Modal -->
-<div class="modal fade" id="movieDetailsModal" tabindex="-1" role="dialog" aria-labelledby="movieDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="movieDetailsModalLabel">Movie Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Content will be dynamically added here using JavaScript --> 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="footer bg-dark text-white text-center p-3">
-        <p>&copy; 2023 Movies by <a href="https://www.linkedin.com/in/afonso-bergano-96aa41254/">Afonso Bergano</a> & <a href="https://www.linkedin.com/in/samuel-santos-9708b7274/">Samuel Santos</a></p>
-    </div>
-
-    <!-- Bootstrap JS dependencies -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <!-- Your custom JavaScript file -->
-    <script src="homeScript.js"></script>
-</body>
-</html>
