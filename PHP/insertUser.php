@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["user_id"] = $user_id;
 
             // Redirect or do further processing
-            header("Location: ../homePage.html");
+            header("Location: ../homePage.php");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
