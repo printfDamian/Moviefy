@@ -120,7 +120,8 @@ function createMediaCard(media) {
 
     const detailsButton = document.createElement('button');
     detailsButton.innerHTML = '<span class="text">Button 57</span><span>Alternate text</span>';
-    detailsButton.classList.add('button-57');
+    detailsButton.classList.add('button-57', 'btn', 'btn-dark', 'p-2', 'fs-6');
+    
     
     
 
@@ -129,7 +130,7 @@ function createMediaCard(media) {
     });
 
     const addToFavoritesButton = document.createElement('button');
-    addToFavoritesButton.classList.add('btn', 'btn-outline-warning', 'mb-2', 'mr-2', 'fs-6');
+    addToFavoritesButton.classList.add('btn', 'button-87', 'mb-2', 'mr-2', 'fs-6');
     addToFavoritesButton.textContent = '⭐';
 
     addToFavoritesButton.addEventListener('click', function () {
