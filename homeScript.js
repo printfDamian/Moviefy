@@ -82,74 +82,94 @@ function showMedia(url, container) {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+
 function createMediaCard(media) {
     console.log('Creating card for:', media.title || media.name);
     const card = document.createElement('div');
-    card.classList.add('card', 'media-card');
+    card.classList.add('card', 'media-card', 'position-relative');
 
-    card.style.width = '15rem';
-    card.style.height = 'auto';
-    card.style.marginRight = '15px';
-    card.style.border = '1px solid #ddd';
-    card.style.borderRadius = '8px';
-    card.style.overflow = 'hidden';
-    card.style.flexShrink = '0';
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('card-body', 'position-relative', 'p-0');
 
     const image = document.createElement('img');
     image.src = IMGPATH + (media.poster_path || media.backdrop_path);
     image.alt = media.title || media.name;
     image.classList.add('card-img-top', 'media-poster');
 
-    const cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
+    const overlay = document.createElement('div');
+    overlay.classList.add('card-overlay', 'transition-opacity', 'position-absolute', 'w-100', 'h-100', 'd-flex', 'flex-column', 'justify-content-end', 'align-items-start', 'p-3', 'bg-transparent'); // Ajustei o estilo do overlay para ter um fundo transparente
+
+    const infoContainer = document.createElement('div');
+    infoContainer.classList.add('info-container', 'w-100', 'd-flex', 'flex-column', 'justify-content-end', 'align-items-start', 'p-3');
 
     const title = document.createElement('h5');
-    title.classList.add('card-title');
+    title.classList.add('card-title', 'text-white', 'mb-2', 'fs-6');
     title.textContent = media.title || media.name;
 
     const rating = document.createElement('p');
-    rating.classList.add('card-text');
+    rating.classList.add('card-text', 'text-white', 'mb-2', 'fs-6');
     rating.textContent = `Rating: ${Number(media.vote_average).toFixed(1)}`;
 
     const releaseYear = document.createElement('p');
-    releaseYear.classList.add('card-text');
+    releaseYear.classList.add('card-text', 'text-white', 'mb-2', 'fs-6');
     releaseYear.textContent = `Released Year: ${getReleaseYear(media)}`;
 
     const genres = document.createElement('p');
-    genres.classList.add('card-text');
+    genres.classList.add('card-text', 'text-white', 'mb-2', 'fs-6');
     genres.textContent = `Genres: ${getGenres(media)}`;
 
     const detailsButton = document.createElement('button');
-    detailsButton.classList.add('btn', 'btn-outline-primary');
-    detailsButton.textContent = 'Details';
+    detailsButton.innerHTML = '<span class="text">Button 57</span><span>Alternate text</span>';
+    detailsButton.classList.add('button-57');
+    
+    
 
-    // Add event listener to the details button
     detailsButton.addEventListener('click', function () {
-        // Call function to show movie details modal
         showMovieDetailsModal(media);
     });
 
     const addToFavoritesButton = document.createElement('button');
-    addToFavoritesButton.classList.add('btn', 'btn-outline-warning', 'mr-2');
+    addToFavoritesButton.classList.add('btn', 'btn-outline-warning', 'mb-2', 'mr-2', 'fs-6');
     addToFavoritesButton.textContent = '⭐';
 
-    // Add event listener to the "Add to Favorites" button
     addToFavoritesButton.addEventListener('click', function () {
-        addToFavorites(media.id); // Pass the movie ID to the addToFavorites function
+        addToFavorites(media.id);
     });
 
-    cardBody.appendChild(title);
-    cardBody.appendChild(rating);
-    cardBody.appendChild(releaseYear);
-    cardBody.appendChild(genres);
-    cardBody.appendChild(detailsButton);
-    cardBody.appendChild(addToFavoritesButton);
+    infoContainer.appendChild(title);
+    infoContainer.appendChild(rating);
+    infoContainer.appendChild(releaseYear);
+    infoContainer.appendChild(genres);
 
-    card.appendChild(image);
-    card.appendChild(cardBody);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('d-flex', 'flex-row', 'justify-content-end');
+    buttonContainer.appendChild(detailsButton);
+    buttonContainer.appendChild(addToFavoritesButton);
+    infoContainer.appendChild(buttonContainer);
+
+    overlay.appendChild(infoContainer);
+
+    imageContainer.addEventListener('mouseover', function () {
+        overlay.style.opacity = '1';
+    });
+
+    imageContainer.addEventListener('mouseout', function () {
+        overlay.style.opacity = '0';
+    });
+
+    imageContainer.appendChild(image);
+    imageContainer.appendChild(overlay);
+    card.appendChild(imageContainer);
 
     return card;
 }
+
+
+
+
+
+
+
 
 function getReleaseYear(media) {
     if (media.release_date) {
