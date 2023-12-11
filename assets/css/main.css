@@ -148,15 +148,23 @@ nav{
 
 .banner-card{
     position: relative;
-    height: 400px;
+    height: 600px;
     overflow: hidden;
     border-radius: 20px;
     cursor: pointer;
 }
-
-.banner-img{
-    object-position: top;
+.text-shadow{
+    text-shadow: 1px 2px #000000;
+    font-weight: bolder;
 }
+.banner-img {
+    object-position: top;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+
+
 
 .banner-card:hover .banner-img{
     transform: scale(1.1);

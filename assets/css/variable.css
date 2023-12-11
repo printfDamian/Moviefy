@@ -2,10 +2,10 @@
 :root{
     --live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
     --rich-black-fogra-30: hsla(0, 0%, 8%, 0.896);
-    --rich-black-fogra-29: hsl(0, 31%, 5%);
+    --rich-black-fogra-29: hsl(0, 0%, 9%);
     --live-indicator: hsl(0, 79%, 63%);
     --oxford-blue-50: hsla(218, 39%, 14%, 0.8);
-    --oxford-blue: hsl(0, 0%, 8%, 0.896);
+    --oxford-blue: hsla(0, 3%, 14%, 0.896);
     --light-azure: hsl(0, 84%, 56%);
     --off-white: hsl(0, 0%, 88%);
     --yellow: hsl(45, 100%, 54%);

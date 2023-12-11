@@ -1,18 +1,18 @@
 // making the website dynamic using js
-'use strict'
+'use strict';
 
-//variables for navbar menu toggle
+// variables for navbar menu toggle
 const header = document.querySelector('header');
 const nav = document.querySelector('nav');
 const navbarMenuBtn = document.querySelector('.navbar-menu-btn');
 
-//variables for navbar search toggle
+// variables for navbar search toggle
 const navbarForm = document.querySelector('.navbar-form');
 const navbarFormCloseBtn = document.querySelector('.navbar-form-close');
 const navbarSearchBtn = document.querySelector('.navbar-search-btn');
 
-//variables for menu toggle function
-function navIsActive(){
+// variables for menu toggle function
+function navIsActive() {
     header.classList.toggle('active');
     nav.classList.toggle('active');
     navbarMenuBtn.classList.toggle('active');
@@ -20,8 +20,7 @@ function navIsActive(){
 
 navbarMenuBtn.addEventListener('click', navIsActive);
 
-
-//navbar search toggle function
+// navbar search toggle function
 const searchBarIsActive = () => navbarForm.classList.toggle('active');
 
 navbarSearchBtn.addEventListener('click', searchBarIsActive);
@@ -35,11 +34,34 @@ const genreApiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${api
 let genresMap = {};
 
 // Function to fetch movie data from the API
+async function fetchMovieDetails(movieId) {
+    const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
+    try {
+        const response = await fetch(movieDetailsUrl);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching movie details:', error);
+        throw error;
+    }
+}
+
+// Updated fetchMovies function
 async function fetchMovies() {
     try {
         const response = await fetch(movieApiUrl);
         const data = await response.json();
-        return data.results; // Assuming the results array contains movie data
+        const movies = data.results;
+
+        // Fetch detailed information for each movie
+        const detailedMovies = await Promise.all(
+            movies.map(async (movie) => {
+                const detailedInfo = await fetchMovieDetails(movie.id);
+                return { ...movie, ...detailedInfo };
+            })
+        );
+
+        return detailedMovies;
     } catch (error) {
         console.error('Error fetching movie data:', error);
         throw error;
@@ -58,6 +80,18 @@ async function fetchGenres() {
         return genresMap;
     } catch (error) {
         console.error('Error fetching genre data:', error);
+        throw error;
+    }
+}
+
+async function fetchTrendingMovies() {
+    const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=1&include_adult=false`;
+    try {
+        const response = await fetch(trendingMoviesUrl);
+        const data = await response.json();
+        return data.results;
+    } catch (error) {
+        console.error('Error fetching trending movies:', error);
         throw error;
     }
 }
@@ -117,7 +151,11 @@ function createMovieCard(movie, genreMap) {
 
         // Check if genre information is available in the API response
         const genreId = movie.genre_ids ? movie.genre_ids[0] : null;
-        const genreName = genreId ? (genreMap[genreId] ? genreMap[genreId].name : 'Genre not available') : 'Genre not available';
+        const genreName = genreId
+            ? genreMap[genreId]
+                ? genreMap[genreId].name
+                : 'Genre not available'
+            : 'Genre not available';
 
         const genreSpan = document.createElement('span');
         genreSpan.classList.add('genre');
@@ -138,7 +176,6 @@ function createMovieCard(movie, genreMap) {
         // Append card elements
         card.appendChild(cardHead);
         card.appendChild(cardBody);
-
     } catch (error) {
         console.error('Error creating movie card:', error);
     }
@@ -146,9 +183,78 @@ function createMovieCard(movie, genreMap) {
     return card;
 }
 
-// Function to show genre buttons
-function showGenres(genres) {
-    // Implement your logic to show genre buttons
+async function updateBanner() {
+    try {
+        const trendingMovies = await fetchTrendingMovies();
+        const randomIndex = Math.floor(Math.random() * trendingMovies.length);
+        const randomMovie = trendingMovies[randomIndex];
+        const bannerCard = document.getElementById('banner-card');
+
+        // Create elements similar to createMovieCard function
+        const img = document.createElement('img');
+        img.src = `https://image.tmdb.org/t/p/w1280${randomMovie.backdrop_path}`;
+        img.alt = '';
+        img.classList.add('banner-img');
+
+        // Add fade-in animation
+        img.style.opacity = '0';
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+
+        // Clear previous content and append the new image
+        bannerCard.innerHTML = '';
+        bannerCard.appendChild(img);
+
+        // Create other elements (genre, year, duration, quality, title)
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('card-content');
+
+        const cardInfo = document.createElement('div');
+        cardInfo.classList.add('card-info');
+
+        // Genre
+        const genre = document.createElement('div');
+        genre.classList.add('genre','text-shadow');
+        genre.innerHTML = `<ion-icon name="film"></ion-icon><span>${getGenres(randomMovie)}</span>`;
+        cardInfo.appendChild(genre);
+
+        // Release Year
+        const year = document.createElement('div');
+        year.classList.add('year','text-shadow');
+        year.innerHTML = `<ion-icon name="calendar"></ion-icon><span>${getReleaseYear(randomMovie)}</span>`;
+        cardInfo.appendChild(year);
+
+        // Title
+        const title = document.createElement('h2');
+        title.classList.add('card-title','text-shadow');
+        title.textContent = randomMovie.title || randomMovie.name;
+        cardContent.appendChild(cardInfo);
+        cardContent.appendChild(title);
+
+        // Append card content to banner card
+        bannerCard.appendChild(cardContent);
+    } catch (error) {
+        console.error('Error updating banner:', error);
+    }
+}
+
+// Function to get release year
+function getReleaseYear(movie) {
+    if (movie.release_date) {
+        return new Date(movie.release_date).getFullYear();
+    } else {
+        return 'N/A';
+    }
+}
+
+// Function to get genres
+function getGenres(movie) {
+    if (movie.genre_ids && movie.genre_ids.length > 0) {
+        return movie.genre_ids.map((id) => genresMap[id].name).join(', ');
+    } else {
+        return 'N/A';
+    }
 }
 
 // Updated updateMovieCards function
@@ -184,4 +290,12 @@ async function updateMovieCards() {
 }
 
 // Call the updateMovieCards function to fetch and update movie data
-updateMovieCards();
+(async () => {
+    // Call fetchGenres before other functions
+    await fetchGenres();
+
+    // Call other functions
+    updateBanner();
+    setInterval(updateBanner, 10000);
+    updateMovieCards();
+})();
