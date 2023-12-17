@@ -1,4 +1,3 @@
-// making the website dynamic using js
 'use strict';
 
 // variables for navbar menu toggle
@@ -28,10 +27,18 @@ navbarFormCloseBtn.addEventListener('click', searchBarIsActive);
 
 // end of that stuff
 // Define API key and URLs
+
+
 const apiKey = 'ae89d8d4072d60d2c5397ecd99f986cb';
 const movieApiUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${apiKey}`;
 const genreApiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 let genresMap = {};
+
+
+
+
+// Usage example for trending movies
+const trendingMoviesURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=ae89d8d4072d60d2c5397ecd99f986cb&page=1&include_adult=false`;
 
 // Function to fetch movie data from the API
 async function fetchMovieDetails(movieId) {
@@ -122,7 +129,7 @@ function createMovieCard(movie, genreMap) {
 
         const rating = document.createElement('div');
         rating.classList.add('rating');
-        rating.innerHTML = `<ion-icon name="star-outline"></ion-icon><span>${movie.vote_average}</span>`;
+        rating.innerHTML = `<ion-icon name="star-outline"></ion-icon><span>${Number(movie.vote_average).toFixed(1)}</span>`; // Round to one decimal place
 
         const play = document.createElement('div');
         play.classList.add('play');
@@ -152,7 +159,7 @@ function createMovieCard(movie, genreMap) {
         // Check if genre information is available in the API response
         const genreId = movie.genre_ids ? movie.genre_ids[0] : null;
         const genreName = genreId
-            ? genreMap[genreId]
+            ? genreMap[genreId] 
                 ? genreMap[genreId].name
                 : 'Genre not available'
             : 'Genre not available';

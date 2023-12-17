@@ -307,17 +307,36 @@ input ~ .checked-radio-bg{
 }
 
 /*movies grid*/
-.movies-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+.movies-grid {
+    display: flex;
     gap: 30px;
+    overflow-x: auto; /* Enable horizontal scrolling if the content overflows */
     margin-bottom: 60px;
+    scroll-snap-type: x mandatory; /* Enable scroll snapping for better visual experience */
 }
 
-.movie-card{
+.movie-card {
     --scale: 0.8;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 auto; /* Ensure each movie card doesn't shrink or grow */
+    scroll-snap-align: start; /* Snap each movie card to the start of the container */
 }
+
+
+
+
+.movie-card {
+    --scale: 0.8;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Adjust the width as needed */
+    max-width: 200px; /* Set a maximum width if needed */
+    margin: 0 auto; /* Center the card within the grid column */
+}
+
 
 .movie-card .card-head{
     position: relative;
@@ -586,5 +605,4 @@ ul .link-item:not(:last-child){
 .wrapper a:not(:last-child){
 margin-right: 30px;
 }
-
 
