@@ -297,10 +297,14 @@ async function updateMovieCards() {
 }
 function createSearchResultCard(movie, genreMap) {
     const card = createMovieCard(movie, genreMap);
-    card.classList.add('search-result-card','movie-card');
+    card.classList.add('search-result-card');
     return card;
 }
-
+function clearSearchResults() {
+    const searchResultsContainer = document.getElementById('search-results-container');
+    searchResultsContainer.innerHTML = ''; // Clear the contents of the container
+    searchResultsContainer.classList.remove('search-results'); // Remove the search-results class
+}
 // Function to update the search results
 async function updateSearchResults(query) {
     try {
@@ -313,7 +317,7 @@ async function updateSearchResults(query) {
         const searchResultsContainer = document.getElementById('search-results-container');
 
         // Clear previous content
-        searchResultsContainer.innerHTML = '';
+        clearSearchResults();
 
         // Create and append search result cards
         searchResults.forEach((movie) => {
@@ -335,8 +339,28 @@ function handleSearchForm(event) {
 
     if (query) {
         updateSearchResults(query);
+    } else {
+        // If the search query is empty, clear the search results
+        clearSearchResults();
     }
 }
+
+
+// Function to handle search form submission
+// Function to handle search form submission
+function handleSearchForm(event) {
+    event.preventDefault();
+    const searchInput = document.querySelector('.navbar-form-search');
+    const query = searchInput.value.trim();
+
+    if (query) {
+        updateSearchResults(query);
+    } else {
+        // If the search query is empty, clear the search results
+        clearSearchResults();
+    }
+}
+
 
 // Add event listener for search form submission
 const searchForm = document.querySelector('.navbar-form');
