@@ -166,7 +166,7 @@ function createMovieCard(movie, genreMap) {
 
         const genreSpan = document.createElement('span');
         genreSpan.classList.add('genre');
-        genreSpan.textContent = genreName;
+        genreSpan.textContent = "Genre: "+genreName;
 
         const year = document.createElement('span');
         year.classList.add('year');
@@ -295,6 +295,52 @@ async function updateMovieCards() {
         console.error('Error updating movie cards:', error);
     }
 }
+function createSearchResultCard(movie, genreMap) {
+    const card = createMovieCard(movie, genreMap);
+    card.classList.add('search-result-card','movie-card');
+    return card;
+}
+
+// Function to update the search results
+async function updateSearchResults(query) {
+    try {
+        // Fetch movies based on the search query
+        const searchApiUrl = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`;
+        const response = await fetch(searchApiUrl);
+        const data = await response.json();
+        const searchResults = data.results;
+
+        const searchResultsContainer = document.getElementById('search-results-container');
+
+        // Clear previous content
+        searchResultsContainer.innerHTML = '';
+
+        // Create and append search result cards
+        searchResults.forEach((movie) => {
+            const card = createSearchResultCard(movie, genresMap);
+            searchResultsContainer.appendChild(card);
+        });
+
+        searchResultsContainer.classList.add('search-results');
+    } catch (error) {
+        console.error('Error updating search results:', error);
+    }
+}
+
+// Function to handle search form submission
+function handleSearchForm(event) {
+    event.preventDefault();
+    const searchInput = document.querySelector('.navbar-form-search');
+    const query = searchInput.value.trim();
+
+    if (query) {
+        updateSearchResults(query);
+    }
+}
+
+// Add event listener for search form submission
+const searchForm = document.querySelector('.navbar-form');
+searchForm.addEventListener('submit', handleSearchForm);
 
 // Call the updateMovieCards function to fetch and update movie data
 (async () => {
