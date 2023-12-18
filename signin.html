@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFy</title>
+
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/media_query.css">
+    <link rel="stylesheet" href="./assets/css/signin.css">
+
+    <link href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@100;600;900&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputFields = document.querySelectorAll('.input-box input');
+    
+            inputFields.forEach(input => {
+                const label = input.parentNode.querySelector('label');
+    
+                input.addEventListener('input', () => {
+                    label.classList.toggle('active', input.value.length > 0);
+                });
+    
+                // Check if input has a value on page load
+                label.classList.toggle('active', input.value.length > 0);
+            });
+        });
+    </script>
+<!--main container-->
+    <div class="container">
+
+            <!--header section-->
+            <header class="">
+                <div class="navbar">
+                    <button class="navbar-menu-btn">
+                        <span class="one"></span ><span class="two"></span><span class="three"></span>
+                    </button>
+
+                    <a href="#" class="navbar-brand">
+                        <h1>Movie<span style="color: var(--azure)">Fy</span></h1>
+                    </a>
+
+
+                    <!--navbar  navigation-->
+                    <a href="./index.html" class="navbar-signin">
+                        <span>Back Home</span>
+                        <ion-icon name="log-in-outline"></ion-icon>
+                    </a>
+
+                  
+            </header>
+            
+        <body>
+
+            <div class="login-box">
+                <form action="#">
+                    <h2>Login</h2>
+                    <div class="input-box">
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="forgot-pass">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                    <button type="submit" class="submit">Login</button>
+                    <div class="signup-link">
+                        <a href="#">Signup</a>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+            <footer>
+
+                <div class="footer-content">
+
+                    <div class="footer-brand">
+                        <h1>Movie<span style="color: var(--azure)">Fy</span></h1>
+                        <p class="slogan">Movies, Tv Shows, Everything In 1 place.</p>
+
+                        <div class="social-link">
+
+                            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <ul>
+                            <h4 class="link-heading">Moviefy</h4>
+
+                            <li class="link-item"><a href="#">About Us</a></li>
+                            <li class="link-item"><a href="#">My profile</a></li>
+                            <li class="link-item"><a href="#">Pricing plans</a></li>
+                            <li class="link-item"><a href="#">Contacts</a></li>
+                        </ul>
+
+                        <ul>
+                            <h4 class="link-heading">Browse</h4>
+
+                            <li class="link-item"><a href="#">Tv Shows</a></li>
+                            <li class="link-item"><a href="#">Movies</a></li>
+                            <li class="link-item"><a href="#">Kids</a></li>
+                            <li class="link-item"><a href="#">Collections</a></li>
+                        </ul>
+
+                        <ul>
+                            <h4 class="link-heading">Help</h4>
+
+                            <li class="link-item"><a href="#">Account & Billing</a></li>
+                            <li class="link-item"><a href="#">Plans & Pricing</a></li>
+                            <li class="link-item"><a href="#">Supported Devices</a></li>
+                            <li class="link-item"><a href="#">Accessibility</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-copyright">
+
+                        <div class="copyright">
+                            <p>&copy; Copyright 2023 Afonso Bergano & Samuel Santos</p>
+                        </div>
+
+                        <div class="wrapper">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms and Conditions</a>
+                        </div>
+                    </div>
+
+                </div>
+
+               </footer>
+
+            </main>
+
+    </div>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
+       
