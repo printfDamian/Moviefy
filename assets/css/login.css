@@ -1,66 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--rich-black-fogra-29);
-}
-
-.container {
-    position: relative;
-    width: 256px;
-    height: 256px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container span {
-    position: absolute;
-    left: 0;
-    width: 32px;
-    height: 6px;
-    background: var(--rich-black-fogra-30);
-    border-radius: 8px;
-    transform-origin: 128px;
-    transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
-    animation: animateBlink 3s linear infinite;
-    animation-delay: calc(var(--i) * (3s / 50));
-}
-
-@keyframes animateBlink {
-    0% {
-        background: var(--azure);
-    }
-
-    25% {
-        background: var(--rich-black-fogra-29);
-    }
-}
-
-.login-box {
-    position: absolute;
-    width: 400px;
-    /* background: red; */
-}
-
-.login-box form {
+form {
     width: 100%;
     padding: 0 50px;
 }
 
 h2 {
     font-size: 2em;
-    color: var(--azure);
+    color: rgb(255, 0, 0);
     text-align: center;
 }
 
@@ -73,7 +20,7 @@ h2 {
     width: 100%;
     height: 50px;
     background: transparent;
-    border: 2px solid var(--rich-black-fogra-29);
+    border: 2px solid #662c2c;
     outline: none;
     border-radius: 40px;
     font-size: 1em;
@@ -84,7 +31,7 @@ h2 {
 
 .input-box input:focus,
 .input-box input:valid {
-    color: var(--azure);
+    border-color: rgb(255, 0, 0);
 }
 
 .input-box label {
@@ -95,16 +42,17 @@ h2 {
     font-size: 1em;
     color: #fff;
     pointer-events: none;
-    transition: .5s ease;
+    transition: top 0.5s ease, font-size 0.5s ease, background 0.5s ease, padding 0.5s ease, color 0.5s ease;
 }
 
 .input-box input:focus~label,
-.input-box input:valid~label {
+.input-box input:valid~label,
+.input-box input:placeholder-shown~label {
     top: 1px;
-    font-size: .8em;
-    background: var(--rich-black-fogra-29);
+    font-size: 0.8em;
+    background: #1f293a;
     padding: 0 6px;
-    color: var(--azure);
+    color: rgb(255, 0, 0);
 }
 
 .forgot-pass {
@@ -122,31 +70,107 @@ h2 {
     text-decoration: underline;
 }
 
-.btn {
-    width: 100%;
-    height: 45px;
+.submit {
+    width: 50%;
+    margin: 0 auto; /* Center the button */
     background: var(--azure);
-    border: none;
-    outline: none;
-    border-radius: 40px;
+    color: var(--rich-black-fogra-29);
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    color: #1f293a;
-    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.signup-link {
-    margin: 20px 0 10px;
-    text-align: center;
+.submit:hover {
+    background: var(--white);
+    color: var(--azure);
 }
 
 .signup-link a {
-    font-size: 1em;
-    color: var(--azure);
-    text-decoration: none;
-    font-weight: 600;
+    margin: 15px 0 10px;
+    text-align: center;
+}
+.input-box {
+    position: relative;
+    margin: 25px 0;
 }
 
-.signup-link a:hover {
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #662c2c;
+    outline: none;
+    border-radius: 40px;
+    font-size: 1em;
+    color: #fff;
+    padding: 0 20px;
+    transition: .5s ease;
+}
+
+.input-box input:focus,
+.input-box input:valid {
+    border-color: rgb(255, 0, 0);
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #000000;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label,
+.input-box input:not(:placeholder-shown) + label,
+.input-box input[type="email"]:focus + label,
+.input-box input[type="email"]:valid + label,
+.input-box input[type="email"]:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 12px;
+    color: #ff0000; /* Cor de sua escolha */
+}
+
+
+
+
+.forgot-pass {
+    margin: -15px 0 10px;
+    text-align: center;
+}
+
+.forgot-pass a {
+    font-size: .85em;
+    color: #fff;
+    text-decoration: none;
+}
+
+.forgot-pass a:hover {
     text-decoration: underline;
+}
+
+.submit {
+    width: 100%;
+    margin: 0 auto; 
+    background: var(--azure);
+    color: var(--rich-black-fogra-29);
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit:hover {
+    background: var(--white);
+    color: var(--azure);
+}
+
+.signup-link a {
+    margin: 15px 0 10px;
+    text-align: center;
 }

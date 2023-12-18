@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/media_query.css">
     <link rel="stylesheet" href="./assets/css/coolStuff.css">
+    <link rel="stylesheet" href="./assets/css/modal.css">
 
     <link href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,9 +35,9 @@
                   <!--navbar  navigation-->
                   <nav class="">
                     <ul class="navbar-nav">
-                        <li><a href="index.html" class="navbar-link">Home</a></li>
+                        <li><a href="home.html" class="navbar-link">Home</a></li>
                         <li><a href="#category" class="navbar-link">Category</a></li>
-                        <li><a href="./login.html" class="navbar-link">Favorites</a></li>
+                        <li><a href="./favorites.html" class="navbar-link">Favorites</a></li>
                         
                     </ul>
                 </nav>
@@ -59,10 +60,12 @@
                             <ion-icon name="search-outline"></ion-icon>
                         </button>
 
-                        <a href="./login.html" class="navbar-signin">
-                            <span>Login</span>
+                        <a href="login.html" class="navbar-signin" onclick="openModal()">
+                            <span>Olá, <span id="nomeDaPessoa">Bergano</span></span>
                             <ion-icon name="log-in-outline"></ion-icon>
                         </a>
+    
+
                     </div>
                 </div>
             </header>
@@ -226,7 +229,7 @@
                             <h4 class="link-heading">Moviefy</h4>
 
                             <li class="link-item"><a href="#">About Us</a></li>
-                            <li class="link-item"><a href="#">My profile</a></li>
+                              <li class="link-item"><a href="profile.html">My profile</a></li>
                             <li class="link-item"><a href="#">Pricing plans</a></li>
                             <li class="link-item"><a href="#">Contacts</a></li>
                         </ul>
