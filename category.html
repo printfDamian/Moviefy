@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFy</title>
+
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/media_query.css">
+    <link rel="stylesheet" href="./assets/css/coolStuff.css">
+
+    <link href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@100;600;900&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        /* Estilos para o link de "Sign in" */
+        .navbar-signin {
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Estilos para o link dentro do modal */
+        .modal-content a {
+            color: #ff0000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Estilo para o ícone de fechar o modal */
+        .close-btn {
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Animação para o modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animação para o conteúdo do modal */
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Animação para o fade-out */
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    
+<!--main container-->
+    <div class="container">
+
+             <!--header section-->
+             <header class="">
+                <div class="navbar">
+                    <button class="navbar-menu-btn">
+                        <span class="one"></span ><span class="two"></span><span class="three"></span>
+                    </button>
+
+                    <a href="#" class="navbar-brand">
+                        <h1>Movie<span style="color: var(--azure)">Fy</span></h1>
+                    </a>
+
+
+                  <!--navbar  navigation-->
+                  <nav class="">
+                    <ul class="navbar-nav">
+                        <li><a href="#home" class="navbar-link">Home</a></li>
+                        <li><a href="#category" class="navbar-link">Category</a></li>
+                        <li><a href="./signin.html" class="navbar-link">Favorites</a></li>
+                        
+                    </ul>
+                </nav>
+
+
+                    <div class="navbar-actions">
+                        <form action="#" class="navbar-form">
+                            <input type="text" name="search" placeholder="i'm looking for..." class="navbar-form-search"> 
+
+                            <button class="navbar-form-btn">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </button>
+
+                            <button class="navbar-form-close">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </button>
+                        </form>
+
+                        <button class="navbar-search-btn">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+
+                        <a href="#" class="navbar-signin" onclick="openModal()">
+                            <span>Olá, <span id="nomeDaPessoa">Bergano</span></span>
+                            <ion-icon name="log-in-outline"></ion-icon>
+                        </a>
+                <!-- Modal -->
+<div id="myModal" class="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <p>Escolha uma opção:</p>
+        <a href="./profile.html">Profile</a>
+        <a href="#" onclick="logout()">Log out</a>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById("myModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.animation = "fadeOut 0.5s ease-in-out";
+        setTimeout(() => {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById("myModal").style.animation = "";
+        }, 500);
+    }
+
+    function logout() {
+        // Adicione aqui a lógica para efetuar o logout, se necessário
+        alert("Logout realizado!");
+        closeModal();
+    }
+</script>
+            </header>
+
+            <!--main section-->
+            <main>
+                
+
+             
+
+    </div>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
