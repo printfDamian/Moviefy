@@ -263,7 +263,25 @@ function getGenres(movie) {
         return 'N/A';
     }
 }
+/// Select the input field
+var inputField = document.getElementById("movie-search");
 
+// Add an event listener for the input field change
+inputField.addEventListener("input", function() {
+    // Get the user's input from the input field
+    var movieSearch = inputField.value;
+
+    // Select the <h1> tag
+    var h1Tag = document.getElementById("searched-movie");
+
+    // If the user has entered something, display the <h1> tag
+    if (movieSearch) {
+        h1Tag.textContent = "Searched movie: " + movieSearch;
+        h1Tag.style.display = "block"; // Show the <h1> tag
+    } else {
+        h1Tag.style.display = "none"; // Hide the <h1> tag
+    }
+});
 // Updated updateMovieCards function
 async function updateMovieCards() {
     try {
@@ -271,7 +289,6 @@ async function updateMovieCards() {
         await fetchGenres(); // No need to assign to genreMap here since it's already assigned in fetchGenres
 
         const movieContainer = document.getElementById('movie-container');
-
         // Clear previous content
         movieContainer.innerHTML = '';
 

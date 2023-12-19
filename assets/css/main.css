@@ -314,33 +314,21 @@ input ~ .checked-radio-bg{
 /*movies grid*/
 .movies-grid {
     display: flex;
-    gap: 30px;
-    overflow-x: auto; /* Enable horizontal scrolling if the content overflows */
-    margin-bottom: 60px;
-    scroll-snap-type: x mandatory; /* Enable scroll snapping for better visual experience */
+    gap: 15px; /* Decrease gap */
+    overflow-x: auto;
+    margin-bottom: 30px; /* Decrease margin-bottom */
+    scroll-snap-type: x mandatory;
 }
 
-.movie-card {
-    --scale: 0.8;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    width: 100%; /* Adjust the width as needed */
-    max-width: 200px; /* Set a maximum width if needed */
-    margin: 0 auto;
-    flex: 0 0 auto; /* Ensure each movie card doesn't shrink or grow */
-    scroll-snap-align: start; /* Snap each movie card to the start of the container */
-}
-
-/* Style for search result cards */
-.search-result-card {
+.movie-card, .search-result-card {
     --scale: 0.8;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 200px;
-    margin: 0 15px; /* Adjust margin as needed */
+    max-width: 200px; /* Increase max-width */
+    height: 355px; /* Add a height */
+    margin: 0 15px;
     flex: 0 0 auto;
     scroll-snap-align: start;
 }
@@ -348,9 +336,9 @@ input ~ .checked-radio-bg{
 /* Style for the container of search result cards */
 .search-results{
     display: flex;
-    gap: 15px; /* Adjust gap as needed */
+    gap: 10px; /* Decrease gap */
     overflow-x: auto;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Decrease margin-bottom */
     scroll-snap-type: x mandatory;
 }
 
