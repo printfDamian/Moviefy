@@ -48,6 +48,14 @@
         width: 15px;
     }
 
+    #banner-section{
+        display: none;
+    }
+
+    .filter-dropdowns,.filter-radios{
+        display: none;
+    }
+
     .navbar-menu-btn.active span{
         background: var(--light-azure);
     }
@@ -106,10 +114,11 @@
 
     .navbar-form.active{
         top: 0;
+        
     }
 
     .navbar-form-search{
-        margin-right: 40px;
+        margin-right: 80px;
     }
 
     .margin-form-btn{
@@ -117,6 +126,7 @@
     }
 
     .navbar-form-close{
+        margin-right: -60px;
         display: block;
         padding-top: 4px;
         opacity: 0.8;
@@ -211,6 +221,8 @@
     --fs-lg: 20px;
 
     } 
+
+    
     .banner-card{
         font-size: small;
     }
