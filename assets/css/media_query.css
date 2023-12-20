@@ -1,4 +1,27 @@
 /*responsive for 1200px*/
+@media only screen and (max-width: 768px) {
+   
+    #loginzinho {
+        visibility: visible;
+    }
+
+    #loginNoResponsive{
+        visibility: hidden;
+    }
+
+   
+
+}
+
+@media only screen and (max-width: 768px) {
+ 
+    #loginzinho {
+        visibility: visible;
+    }
+
+   
+
+}
 
 @media screen and (max-width: 1200px){
     :root{
@@ -13,6 +36,7 @@
         width: 100%;
         overflow: hidden;
         z-index: 50;
+        
     }
 
     header.active{
@@ -104,7 +128,7 @@
         top: 100%;
         left: var(--px);
         right: var(--px);
-        background: var(--rich-black-fogra-29);
+        background: var(--oxford-blue);
         margin-right: 0;
         display: flex;
         justify-content: space-between;
@@ -113,23 +137,25 @@
     }
 
     .navbar-form.active{
-        top: 0;
+        
+        top: 29%;
         
     }
 
     .navbar-form-search{
-        margin-right: 80px;
+        margin-right: 60px;
     }
 
     .margin-form-btn{
-        right: 80px;
+        right: 30px;
     }
 
     .navbar-form-close{
-        margin-right: -60px;
+        margin-right: -30px;
         display: block;
-        padding-top: 4px;
-        opacity: 0.8;
+        padding-top: 1px;
+        opacity: 1;
+        background: var(black);
     }
 
     .navbar-form-close:hover{
@@ -143,7 +169,7 @@
 
     .navbar-search-btn{
         display: block;
-        margin-right: 100px;
+        margin-left: 19px;
         padding-top: 5px;
     }
 
@@ -178,6 +204,7 @@
 
 
 }
+
 
 /*responsive for 768px*/
 @media screen and(max-width: 768px){
@@ -227,7 +254,7 @@
         font-size: small;
     }
     .navbar-search-btn{
-        margin-right: 20px;
+        margin-right: 40px;
     }
 
     .navbar-form-search{
