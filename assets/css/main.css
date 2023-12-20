@@ -325,7 +325,7 @@ input ~ .checked-radio-bg{
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    width: 100%;
+    width: 160px;
     max-width: 200px; /* Increase max-width */
     height: 355px; /* Add a height */
     margin: 0 15px;
