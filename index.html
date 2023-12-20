@@ -12,7 +12,16 @@
     <link href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@100;600;900&display=swap" rel="stylesheet">
+    <style>
+        #loginzinho{
+            .navbar-link {
+    visibility: hidden;
+}   
     
+
+
+        }
+    </style>
 </head>
 <body>
     
@@ -37,6 +46,8 @@
                         <li><a href="index.html" class="navbar-link">Home</a></li>
                         <li><a href="#category" class="navbar-link">Category</a></li>
                         <li><a href="./login.html" class="navbar-link">Favorites</a></li>
+                        <li><a href="./aboutUs.html" class="navbar-link">About Us</a></li>
+                        <li><a href="./login.html" class="navbar-link" id="loginzinho">Login</a></li>
                         
                     </ul>
                 </nav>
@@ -58,7 +69,7 @@
                             <ion-icon name="search-outline"></ion-icon>
                         </button>
 
-                        <a href="./login.html" class="navbar-signin">
+                        <a href="./login.html" class="navbar-signin" id="loginNoResponsive">
                             <span>Login</span>
                             <ion-icon name="log-in-outline"></ion-icon>
                         </a>
