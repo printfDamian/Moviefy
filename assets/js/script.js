@@ -54,13 +54,28 @@ async function fetchMovieDetails(movieId) {
 }
 
 // Updated fetchMovies function
-async function fetchMovies() {
+async function fetchMovies(url) {
+    console.log(url);
     try {
-        const response = await fetch(movieApiUrl);
+        const response = await fetch(url);
         const data = await response.json();
-        const movies = data.results;
 
-        // Fetch detailed information for each movie
+        let movies;
+        if (Array.isArray(data.results)) {
+            movies = data.results;
+        } else {
+            // If it's the latest movie endpoint, fetch the latest movies using the /discover/movie endpoint
+            if (url.includes('/movie/latest')) {
+                const currentDate = new Date().toISOString().split('T')[0];
+                const discoverUrl = `https://api.themoviedb.org/3/discover/movie?primary_release_date.lte=${currentDate}&api_key=${apiKey}`;
+                const discoverResponse = await fetch(discoverUrl);
+                const discoverData = await discoverResponse.json();
+                movies = discoverData.results;
+            } else {
+                movies = [data];
+            }
+        }
+
         const detailedMovies = await Promise.all(
             movies.map(async (movie) => {
                 const detailedInfo = await fetchMovieDetails(movie.id);
@@ -74,7 +89,6 @@ async function fetchMovies() {
         throw error;
     }
 }
-
 // Function to fetch genre data from the API
 async function fetchGenres() {
     try {
@@ -283,14 +297,14 @@ inputField.addEventListener("input", function() {
     }
 });
 // Updated updateMovieCards function
-async function updateMovieCards() {
+async function updateMovieCards(url = movieApiUrl) {
     try {
-        const movies = await fetchMovies();
+        const movies = await fetchMovies(url);
         await fetchGenres(); // No need to assign to genreMap here since it's already assigned in fetchGenres
 
-        const movieContainer = document.getElementById('movie-container');
+        const movieSection = document.getElementById('movie-container');
         // Clear previous content
-        movieContainer.innerHTML = '';
+        movieSection.innerHTML = '';
 
         // Assuming 3 cards per row, you can adjust this based on your design
         const cardsPerRow = 7;
@@ -299,18 +313,36 @@ async function updateMovieCards() {
         const columnWidth = `${700 / cardsPerRow}%`;
 
         // Set the grid-template-columns property
-        movieContainer.style.gridTemplateColumns = `repeat(${cardsPerRow}, ${columnWidth})`;
+        movieSection.style.gridTemplateColumns = `repeat(${cardsPerRow}, ${columnWidth})`;
 
         movies.forEach((movie) => {
             const card = createMovieCard(movie, genresMap);
-            movieContainer.appendChild(card);
+            movieSection.appendChild(card);
         });
 
-        movieContainer.classList.add('movies-grid');
-        showGenres(Object.values(genresMap)); // Show genre buttons
+        movieSection.classList.add('movies-grid');
+       
     } catch (error) {
         console.error('Error updating movie cards:', error);
     }
+}
+window.onload = function() {
+    console.log(apiKey);
+    const featured = document.getElementById('featured');
+    const popular = document.getElementById('popular');
+    const newest = document.getElementById('newest');
+
+    featured.addEventListener('change', async () => {
+        await updateMovieCards(`https://api.themoviedb.org/3/movie/top_rated?include_adult=false&api_key=${apiKey}`);
+    });
+
+    popular.addEventListener('change', async () => {
+        await updateMovieCards(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`);
+    });
+
+    newest.addEventListener('change', async () => {
+        await updateMovieCards(`https://api.themoviedb.org/3/movie/latest?api_key=${apiKey}`);
+    });
 }
 function createSearchResultCard(movie, genreMap) {
     const card = createMovieCard(movie, genreMap);
