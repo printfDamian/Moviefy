@@ -54,14 +54,23 @@ async function fetchMovieDetails(movieId) {
 }
 
 // Updated fetchMovies function
-async function fetchMovies(url, genre) {
-    console.log(url);
+async function fetchMovies(url, genre, year) {
+    console.log(year);
     try {
         let finalUrl = url;
         if (genre !== 'all genres') {
             finalUrl += `&with_genres=${genre}`;
         }
-
+        if (year !== 'all years') {
+            if (year.includes('-')) {
+                const [earlierYear, laterYear] = year.split('-');
+                finalUrl += `&primary_release_date.gte=${earlierYear}&primary_release_date.lte=${laterYear}`;
+            } else if (year === '1999 and before') {
+                finalUrl += '&primary_release_date.lte=1999';
+            } else {
+                finalUrl += `&primary_release_year=${year}`;
+            }
+        }
         const response = await fetch(finalUrl);
         const data = await response.json();
 
@@ -302,10 +311,28 @@ inputField.addEventListener("input", function() {
     }
 });
 // Updated updateMovieCards function
-async function updateMovieCards(url = movieApiUrl, genreId = '') {
+async function updateMovieCards(url = movieApiUrl, genreId = '', year = '') {
+    console.log('Year in updateMovieCards:', year);
     try {
-        console.log(`Updating movie cards with URL: ${url}`);
-        const movies = await fetchMovies(url, genreId);
+        let movies;
+        if (year.includes('-')) {
+            // Split the year range into start and end years
+            const [startYear, endYear] = year.split('-');
+
+            // Fetch the movies
+            const response = await fetch(`${url}&with_genres=${genreId}`);
+            const data = await response.json();
+
+            // Filter the movies based on the year range
+            movies = data.results.filter(movie => {
+                const releaseYear = new Date(movie.release_date).getFullYear();
+                return releaseYear >= startYear && releaseYear <= endYear;
+            });
+        } else {
+            // If year doesn't include '-', it's a single year
+            movies = await fetchMovies(url, genreId, year);
+        }
+
         console.log('Movies:', movies); // Log the movies
 
         const movieSection = document.getElementById('movie-container');
@@ -332,17 +359,18 @@ window.onload = function() {
     const popular = document.getElementById('popular');
     const newest = document.getElementById('newest');
     const genreSelect = document.getElementById('genreSelect');
+    const yearSelect = document.querySelector('.year');
 
     featured.addEventListener('change', async () => {
-        await updateMovieCards(`https://api.themoviedb.org/3/movie/top_rated?include_adult=false&api_key=${apiKey}`);
+        await updateMovieCards(`https://api.themoviedb.org/3/movie/top_rated?include_adult=false&api_key=${apiKey}`, '', yearSelect.value);
     });
-
+    
     popular.addEventListener('change', async () => {
-        await updateMovieCards(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`);
+        await updateMovieCards(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`, '', yearSelect.value);
     });
-
+    
     newest.addEventListener('change', async () => {
-        await updateMovieCards(`https://api.themoviedb.org/3/movie/latest?api_key=${apiKey}`);
+        await updateMovieCards(`https://api.themoviedb.org/3/movie/latest?api_key=${apiKey}`, '', yearSelect.value);
     });
 
     genreSelect.addEventListener('change', async function() {
@@ -350,8 +378,18 @@ window.onload = function() {
         const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
         
         try {
-            // Wait for the updateMovieCards function to complete
-            await updateMovieCards(url, genreId);
+            await updateMovieCards(url, genreId, yearSelect.value);
+        } catch (error) {
+            console.error('Error updating movie cards:', error);
+        }
+    });
+    
+    yearSelect.addEventListener('change', async function() {
+        const year = this.value;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+        
+        try {
+            await updateMovieCards(url, genreSelect.value, year);
         } catch (error) {
             console.error('Error updating movie cards:', error);
         }
