@@ -54,17 +54,21 @@ async function fetchMovieDetails(movieId) {
 }
 
 // Updated fetchMovies function
-async function fetchMovies(url) {
+async function fetchMovies(url, genre) {
     console.log(url);
     try {
-        const response = await fetch(url);
+        let finalUrl = url;
+        if (genre !== 'all genres') {
+            finalUrl += `&with_genres=${genre}`;
+        }
+
+        const response = await fetch(finalUrl);
         const data = await response.json();
 
         let movies;
         if (Array.isArray(data.results)) {
             movies = data.results;
         } else {
-            // If it's the latest movie endpoint, fetch the latest movies using the /discover/movie endpoint
             if (url.includes('/movie/latest')) {
                 const currentDate = new Date().toISOString().split('T')[0];
                 const discoverUrl = `https://api.themoviedb.org/3/discover/movie?primary_release_date.lte=${currentDate}&api_key=${apiKey}`;
@@ -119,6 +123,7 @@ async function fetchTrendingMovies() {
 
 // Function to create a movie card element
 function createMovieCard(movie, genreMap) {
+    console.log(`Creating movie card for movie: ${movie.title}`);
     const card = document.createElement('div');
     card.classList.add('movie-card');
 
@@ -299,6 +304,7 @@ inputField.addEventListener("input", function() {
 // Updated updateMovieCards function
 async function updateMovieCards(url = movieApiUrl) {
     try {
+        console.log(`Updating movie cards with URL: ${url}`);
         const movies = await fetchMovies(url);
         await fetchGenres(); // No need to assign to genreMap here since it's already assigned in fetchGenres
 
@@ -327,10 +333,10 @@ async function updateMovieCards(url = movieApiUrl) {
     }
 }
 window.onload = function() {
-    console.log(apiKey);
     const featured = document.getElementById('featured');
     const popular = document.getElementById('popular');
     const newest = document.getElementById('newest');
+    const genreSelect = document.getElementById('genreSelect');
 
     featured.addEventListener('change', async () => {
         await updateMovieCards(`https://api.themoviedb.org/3/movie/top_rated?include_adult=false&api_key=${apiKey}`);
@@ -342,6 +348,18 @@ window.onload = function() {
 
     newest.addEventListener('change', async () => {
         await updateMovieCards(`https://api.themoviedb.org/3/movie/latest?api_key=${apiKey}`);
+    });
+
+    genreSelect.addEventListener('change', async function() {
+        const genreId = this.value;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+    
+        try {
+            // Wait for the updateMovieCards function to complete
+            await updateMovieCards(url);
+        } catch (error) {
+            console.error('Error updating movie cards:', error);
+        }
     });
 }
 function createSearchResultCard(movie, genreMap) {
