@@ -305,6 +305,7 @@ inputField.addEventListener("input", function() {
 async function updateMovieCards(url = movieApiUrl) {
     try {
         console.log(`Updating movie cards with URL: ${url}`);
+        console.log(`Updating movie cards with URL: ${url}`);
         const movies = await fetchMovies(url);
         await fetchGenres(); // No need to assign to genreMap here since it's already assigned in fetchGenres
 
