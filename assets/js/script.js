@@ -302,33 +302,27 @@ inputField.addEventListener("input", function() {
     }
 });
 // Updated updateMovieCards function
-async function updateMovieCards(url = movieApiUrl) {
+async function updateMovieCards(url = movieApiUrl, genreId = '') {
     try {
         console.log(`Updating movie cards with URL: ${url}`);
-        console.log(`Updating movie cards with URL: ${url}`);
-        const movies = await fetchMovies(url);
-        await fetchGenres(); // No need to assign to genreMap here since it's already assigned in fetchGenres
+        const movies = await fetchMovies(url, genreId);
+        console.log('Movies:', movies); // Log the movies
 
         const movieSection = document.getElementById('movie-container');
-        // Clear previous content
         movieSection.innerHTML = '';
 
-        // Assuming 3 cards per row, you can adjust this based on your design
         const cardsPerRow = 7;
-
-        // Calculate the width for each column in the grid
         const columnWidth = `${700 / cardsPerRow}%`;
-
-        // Set the grid-template-columns property
         movieSection.style.gridTemplateColumns = `repeat(${cardsPerRow}, ${columnWidth})`;
 
+        console.log('Genres map:', genresMap); // Log the genres map
         movies.forEach((movie) => {
             const card = createMovieCard(movie, genresMap);
+            console.log('Card:', card); // Log the card
             movieSection.appendChild(card);
         });
 
         movieSection.classList.add('movies-grid');
-       
     } catch (error) {
         console.error('Error updating movie cards:', error);
     }
@@ -353,11 +347,11 @@ window.onload = function() {
 
     genreSelect.addEventListener('change', async function() {
         const genreId = this.value;
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
-    
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+        
         try {
             // Wait for the updateMovieCards function to complete
-            await updateMovieCards(url);
+            await updateMovieCards(url, genreId);
         } catch (error) {
             console.error('Error updating movie cards:', error);
         }
