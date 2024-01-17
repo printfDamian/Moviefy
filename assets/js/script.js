@@ -15,7 +15,7 @@ function navIsActive() {
     header.classList.toggle('active');
     nav.classList.toggle('active');
     navbarMenuBtn.classList.toggle('active');
-}
+} 
 
 navbarMenuBtn.addEventListener('click', navIsActive);
 
@@ -214,7 +214,9 @@ function createMovieCard(movie, genreMap) {
     } catch (error) {
         console.error('Error creating movie card:', error);
     }
-
+    card.addEventListener('click', () => {
+        window.location.href = `movieDetails.html?id=${movie.id}`;
+    });
     return card;
 }
 
