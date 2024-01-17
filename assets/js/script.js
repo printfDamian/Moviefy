@@ -214,9 +214,7 @@ function createMovieCard(movie, genreMap) {
     } catch (error) {
         console.error('Error creating movie card:', error);
     }
-    card.addEventListener('click', () => {
-        window.location.href = `movieDetails.html?id=${movie.id}`;
-    });
+
     return card;
 }
 

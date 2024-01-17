@@ -14,7 +14,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@100;600;900&display=swap" rel="stylesheet">
 
-     
+     <style>
+        .section-heading {
+  font-family: 'Bangers', cursive;
+}
+     </style>
 </head>
 <body>
     
@@ -28,7 +32,7 @@
                         <span class="one"></span ><span class="two"></span><span class="three"></span>
                     </button>
 
-                    <a href="#" class="navbar-brand">
+                    <a href="index.html" class="navbar-brand">
                         <h1>Movie<span style="color: var(--azure)">Fy</span></h1>
                     </a>
 
@@ -36,9 +40,9 @@
                   <!--navbar  navigation-->
                   <nav class="">
                     <ul class="navbar-nav">
-                        <li><a href="home.html" class="navbar-link">Home</a></li>
+                        <li><a href="index.html" class="navbar-link">Home</a></li>
 
-                        <li><a href="./favorites.html" class="navbar-link">Favorites</a></li>
+                        <li><a href="./aboutUs.html" class="navbar-link">About Us</a></li>
                         
                     </ul>
                 </nav>
@@ -61,49 +65,945 @@
                             <ion-icon name="search-outline"></ion-icon>
                         </button>
 
-                        <a href="#" class="navbar-signin" onclick="openModal()">
-                            <span>Olá, <span id="nomeDaPessoa">Bergano</span></span>
+                        <a href="index.html" class="navbar-signin">
+                           
                             <ion-icon name="log-in-outline"></ion-icon>
                         </a>
-                <!-- Modal -->
-<div id="myModal" class="modal">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <div class="modal-content">
-        <p>Escolha uma opção:</p>
-        <a href="./profile.html">Profile</a>
-        <a href="#" onclick="logout()">Log out</a>
-    </div>
-</div>
-
-<script>
-    function openModal() {
-        document.getElementById("myModal").style.display = "flex";
-    }
-
-    function closeModal() {
-        document.getElementById("myModal").style.animation = "fadeOut 0.5s ease-in-out";
-        setTimeout(() => {
-            document.getElementById("myModal").style.display = "none";
-            document.getElementById("myModal").style.animation = "";
-        }, 500);
-    }
-
-    function logout() {
-        // Adicione aqui a lógica para efetuar o logout, se necessário
-        alert("Logout realizado!");
-       
-        window.location.href = "index.html";
-        closeModal();
-    }
-</script>
+                    </div>
             </header>
 
             <!--main section-->
             <main>
+
+                <h2 class="section-heading">-> Category There <- </h2>  
                 
+                
+                    <!-- Movies grid -->
+<div class="movies-grid">
 
+    <!-- Movie card -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/red-notice.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>6.4</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">Red Notice</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2021</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/spider-men.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>8.1</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">Spider-Man: Homecoming</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2017</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="movie-card">
+
+            <!-- Card head (contendo a imagem e overlay) -->
+            <div class="card-head">
+                <img src="./assets/images/movies/matrix.jpg" alt="" class="card-img">
+    
+                <div class="card-overlay">
+    
+                    <!--(bookmark, rating, play) -->
+                    <div class="bookmark">
+                        <ion-icon name="bookmark-outline"></ion-icon>
+                    </div>
+    
+                    <div class="rating">
+                        <ion-icon name="star-outline"></ion-icon>
+                        <span>7.3</span>
+                    </div>
+    
+                    <div class="play">
+                        <ion-icon name="play-circle-outline"></ion-icon>
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+            <!-- Card body (contendo título, informações) -->
+            <div class="card-body">
+                <h3 class="card-title">The Matrix</h3>
+    
+                <div class="card-info">
+                    <span class="genre">Action/Comedy</span>
+                    <span class="year">2022</span>
+                </div>
+    
+            </div>
+    
+        </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/captain-marvel.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>8.5</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">Captain</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2020</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/casino-royale.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">Casino Royale</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2021</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/matrix.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/captain-marvel.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/saving-private-ryan.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/dark-knight.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/dune.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/endgame.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/eternals.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/gladiator.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/interstaller.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/LOTR.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/panther.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/saving-private-ryan.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/shang-chi.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/venom.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="movie-card">
+
+    <!-- Card head (contendo a imagem e overlay) -->
+    <div class="movie-card">
+
+        <!-- Card head (contendo a imagem e overlay) -->
+        <div class="card-head">
+            <img src="./assets/images/movies/ww84.jpg" alt="" class="card-img">
+
+            <div class="card-overlay">
+
+                <!--(bookmark, rating, play) -->
+                <div class="bookmark">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+
+                <div class="rating">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>7.3</span>
+                </div>
+
+                <div class="play">
+                    <ion-icon name="play-circle-outline"></ion-icon>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card body (contendo título, informações) -->
+        <div class="card-body">
+            <h3 class="card-title">The Matrix</h3>
+
+            <div class="card-info">
+                <span class="genre">Action/Comedy</span>
+                <span class="year">2022</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+ <!-- Load more button -->
+    <button class="load-more">LOAD MORE</button>
              
-
+<br/>
     </div>
 
 
