@@ -3,14 +3,6 @@
 
 /*import reset reset.css*/
 @import url(./reset.css);
-body{
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
 
 /*Reutilizar style pagina*/
 header, nav {background: var(--rich-black-fogra-29);
@@ -349,6 +341,10 @@ input ~ .checked-radio-bg{
     margin-bottom: 20px; /* Decrease margin-bottom */
     scroll-snap-type: x mandatory;
 }
+
+
+
+
 
 .movie-card .card-head{
     position: relative;
