@@ -221,6 +221,9 @@
         grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
     }
 
+    .section-heading{
+        margin-top:100px;
+    }
 
 
 }
@@ -254,7 +257,6 @@
     .filter-radios{
         width: 100%;
     }
-
 }
 
 /*responsive for 575px*/
@@ -266,7 +268,6 @@
     /*typograpgy*/
     --section-heading: 32px;
     --fs-lg: 20px;
-
     } 
 
     
@@ -293,6 +294,10 @@
 
     .wrapper{
         margin-bottom: 20px;
+    }
+
+    .section-heading{
+        margin-top:100px;
     }
 }
 

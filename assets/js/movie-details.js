@@ -18,47 +18,49 @@ const movieDetailsCastList = document.querySelector('.movie-details-cast-list');
 const movieDetailsCastClose = document.querySelector('.movie-details-cast-close');
 
 window.onload = async function() {
-    // Get the movie ID from the URL
+    
+
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
 
-    // Fetch the movie details
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`);
-    const movieDetails = await response.json();
+    const movieDetailsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`);
+    const movieDetails = await movieDetailsResponse.json();
 
-    // Fetch the movie's videos
-    const videosResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`);
-    const movieVideos = await videosResponse.json();
+    // Select the elements from the DOM
+    const movieDetailsTitle = document.querySelector('.detail-title');
+    const movieDetailsImage = document.querySelector('.movie-detail-banner img');
+    const movieDetailsStoryline = document.querySelector('.storyline');
+    const movieDetailsYear = document.querySelector('.date-time time');
 
-    // Find the first trailer in the videos list
-    const trailer = movieVideos.results.find(video => video.type === 'Trailer');
-
-    // Insert the movie details into the page
+    // Update the elements with the movie details
     movieDetailsTitle.textContent = movieDetails.title;
-    movieDetailsOverview.textContent = movieDetails.overview;
-    movieDetailsRating.textContent = `Rating: ${movieDetails.vote_average}`;
-    movieDetailsRelease.textContent = `Release date: ${movieDetails.release_date}`;
+    movieDetailsImage.src = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`;
+    movieDetailsStoryline.textContent = movieDetails.overview;
+    movieDetailsYear.textContent = movieDetails.release_date.slice(0, 4);
 
-    // If a trailer is available, create an iframe and append it to the movieDetailsContainer
-    if (trailer) {
-        const trailerIframe = document.createElement('iframe');
-        trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}`;
-        trailerIframe.frameborder = "0";
-        trailerIframe.allowfullscreen = true;
-        movieDetailsContainer.appendChild(trailerIframe);
-    }
+    // Set the movie backdrop image as the body background
+    document.body.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movieDetails.backdrop_path})`;
 
-    // Fetch and display the movie's genres
-    const genresResponse = await fetch(genreApiUrl);
-    const genresData = await genresResponse.json();
-    genresMap = genresData.genres.reduce((map, genre) => {
-        map[genre.id] = genre.name;
-        return map;
-    }, {});
-    movieDetailsGenres.textContent = movieDetails.genres.map(genre => genresMap[genre.id]).join(', ');
 
-    // Fetch and display the movie's cast
-    const castResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
-    const castData = await castResponse.json();
-    movieDetailsCastList.innerHTML = castData.cast.map(actor => `<li>${actor.name} as ${actor.character}</li>`).join('');
+// ...
+
+// ...
+
+// Select the elements from the DOM
+const movieDetailsPG = document.querySelector('.badge'); // Select the badge element for PG
+const movieDetailsGenres = document.querySelector('.ganre-wrapper'); // Select the anchor tag inside the genre wrapper
+
+// ...
+
+// Update the genres and PG rating
+if (movieDetailsGenres) { // Check that the element exists
+    movieDetailsGenres.textContent = movieDetails.genres.map(genre => genre.name).join(', ');
+}
+if (movieDetailsPG) { // Check that the element exists
+    movieDetailsPG.textContent = movieDetails.release_dates.results[0].release_dates[0].certification;
+}
+
+// ...
+
+   
 }

@@ -227,6 +227,10 @@ async function updateBanner() {
         const randomMovie = trendingMovies[randomIndex];
         const bannerCard = document.getElementById('banner-card');
 
+        // Create anchor tag
+        const anchor = document.createElement('a');
+        anchor.href = `movieDetails.html?id=${randomMovie.id}`; // Set the href to the movie details page
+
         // Create elements similar to createMovieCard function
         const img = document.createElement('img');
         img.src = `https://image.tmdb.org/t/p/w1280${randomMovie.backdrop_path}`;
@@ -241,7 +245,7 @@ async function updateBanner() {
 
         // Clear previous content and append the new image
         bannerCard.innerHTML = '';
-        bannerCard.appendChild(img);
+        anchor.appendChild(img); // Append the image to the anchor tag instead of the bannerCard
 
         // Create other elements (genre, year, duration, quality, title)
         const cardContent = document.createElement('div');
@@ -269,8 +273,11 @@ async function updateBanner() {
         cardContent.appendChild(cardInfo);
         cardContent.appendChild(title);
 
-        // Append card content to banner card
-        bannerCard.appendChild(cardContent);
+        // Append card content to anchor tag
+        anchor.appendChild(cardContent);
+
+        // Append anchor tag to banner card
+        bannerCard.appendChild(anchor);
     } catch (error) {
         console.error('Error updating banner:', error);
     }
@@ -396,6 +403,21 @@ window.onload = function() {
             console.error('Error updating movie cards:', error);
         }
     });
+
+// Select all the category-card elements
+const categories = document.querySelectorAll('.category-card');
+
+// Add a click event listener to each category-card
+categories.forEach(category => {
+    category.addEventListener('click', function() {
+        // Get the genre ID from the category-card element
+        const genreId = category.dataset.genreId;
+
+        // Redirect to the category.html page with the genre ID as a URL parameter
+        window.location.href = `category.html?genreId=${genreId}`;
+    });
+});
+    
 }
 function createSearchResultCard(movie, genreMap) {
     const card = createMovieCard(movie, genreMap);

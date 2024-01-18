@@ -13,9 +13,9 @@ header, nav {background: var(--rich-black-fogra-29);
 }
 
 .section-heading{
-    font-size: var(--section-heading);
+    font-size: 30px;
     font-weight: var(--fw-5);
-    margin-bottom: 60px;
+    text-align: center;
 }
 
 
@@ -444,21 +444,6 @@ input ~ .checked-radio-bg{
 
 .movie-card .genre{
     margin-right: 8px;
-}
-
-.load-more{
-   background: var(--oxford-blue); 
-   display: block;
-   padding: 20px 50px;
-   margin: auto;
-   font-size: var(--fs-sm);
-   font-weight: var(--fw-5);
-   border-radius: 15px;
-   color: var(--white);
-}
-
-.load-more:hover{
-    background: var(--light-azure);
 }
 
 .category{
