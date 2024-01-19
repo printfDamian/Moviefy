@@ -8,13 +8,59 @@
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/media_query.css">
     <link rel="stylesheet" href="./assets/css/coolStuff.css">
-
+    <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@100;600;900&display=swap" rel="stylesheet">
     <style>
-        
-    </style>
+        .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+     
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+     
+    .dropdown-menu a {
+        color: #fff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background 0.3s ease;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .dropdown-menu a:hover {
+        background: #f32525;
+    }
+     
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+    }
+     
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        background: linear-gradient(to right, #2c2a2a, #030303);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+     </style>
 </head>
 <body>
 
@@ -37,7 +83,13 @@
                     <ul class="navbar-nav">
                         <li><a href="index.html" class="navbar-link">Home</a></li>
                         <li><a href="#category" class="navbar-link">Category</a></li>
-                        <li><a href="./aboutUs.html" class="navbar-link">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="navbar-link dropdown-toggle">About Us</a>
+                            <div class="dropdown-menu">
+                              <a href="./aboutUsBergano.html">Bergano</a>
+                              <a href="./aboutUsSamuel.html">Samuel</a>
+                            </div>
+                          </li>
                       
                         
                     </ul>
